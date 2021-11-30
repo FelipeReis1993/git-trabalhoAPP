@@ -21,7 +21,7 @@ class _TelaHomeState extends State<TelaHome>{
       backgroundColor: Colors.blue,
       
       appBar: AppBar(
-        title: Text('Bem vido'),
+        title: Text('Bem vindo'),
         actions: [
           IconButton(
             onPressed: () {
@@ -50,7 +50,7 @@ class _TelaHomeState extends State<TelaHome>{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('FELIPE DOICIANO REIS',style:
+                      Text('FELIPE DOMICIANO REIS',style:
                       TextStyle(
                        fontWeight: FontWeight.bold,
                        fontFamily: 'fontelight',

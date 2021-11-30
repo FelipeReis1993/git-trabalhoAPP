@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 //
@@ -13,8 +14,10 @@ import 'package:flutter/material.dart';
 
 class _LoginPageState extends State<LoginPage>{
 
-  final txtNome = TextEditingController();
-  final txtSenha = TextEditingController();
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+  bool isLoading = false;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -46,46 +49,23 @@ class _LoginPageState extends State<LoginPage>{
                 child:Column(
                 children: [
                   Text('Login'),
-                  campoTexto('Nome', txtNome),
+                  campoTexto('Email', txtEmail),
                   campoTexto2('Senha', txtSenha),
                   
                   TextButton(
-                    onPressed: () {
-                     final nome = txtNome.text; 
-                     final senha = txtSenha.text;
-
-                     if(nome.isEmpty || senha.isEmpty){
-                       showDialog(context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: Text("Erro"),
-                            content: Text("Login e/ou Senha invalido(s)"),
-                            actions: <Widget> [
-                              TextButton(
-                                 child: Text("OK"),
-                                onPressed: (){
-                                  Navigator.pop(context);
-                                }
-                              ),
-                            ],
-                          );
-                        },
-                       );
-                     }
-                    else{
-                      Navigator.pushReplacementNamed(context, 'principal');
-                    } 
-                      
-                    },
                     child: Text('Entrar'),
+                    onPressed: (){
+                      setState(() {
+                        isLoading  = true;
+                      });
+                      login(txtEmail.text, txtSenha.text);
+                    },
                     ),
-                    
                     TextButton(
                       child: Text('Cadastrar'),
-                    onPressed: () {
-                        
-                    },
-                    
+                      onPressed: (){
+                        Navigator.pushNamed(context, 'cadastro');
+                      }
                     ),
                 ],
                 ),
@@ -109,11 +89,11 @@ Widget campoTexto(rotulo, variavel){
 
       child: TextFormField(
         
-        controller: variavel,
+        controller: txtEmail,
         decoration: InputDecoration(
           labelText: rotulo,
           
-          hintText: 'Digite seu nome',
+          hintText: 'Digite seu Email',
           
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
@@ -130,7 +110,7 @@ Widget campoTexto(rotulo, variavel){
 
       child: TextFormField(
         obscureText: true,
-        controller: variavel,
+        controller: txtSenha,
         decoration: InputDecoration(
           labelText: rotulo,
           
@@ -146,7 +126,37 @@ Widget campoTexto(rotulo, variavel){
   }
 
 
+void login(email, senha){
 
+    FirebaseAuth.instance.signInWithEmailAndPassword
+    (email: email, password: senha).then((value) {
+
+      Navigator.pushReplacementNamed(context, 'principal');
+
+    }).catchError((erro){
+
+      if (erro.code == 'user-not-found'){
+        exibirMensagem('ERRO: Usuário não encontrado.');
+      }else if (erro.code == 'wrong-password'){
+        exibirMensagem('ERRO: Senha incorreta.');
+      }else if (erro.code == 'invalid-email'){
+        exibirMensagem('ERRO: Email inválido.');
+      }else{
+        exibirMensagem('ERRO: ${erro.message}.');
+      }
+
+    });
+    
+  }
+
+  void exibirMensagem(msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 
 
 

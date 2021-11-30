@@ -64,8 +64,33 @@ class _TelaProvasState extends State<TelaProvas>{
                 trailing: IconButton(
                   icon: Icon(Icons.east_rounded),
                   onPressed:(){
+                    showDialog(
+                      context: context, 
+                      builder:(BuildContext context){
+                        return AlertDialog(
+                      title: Text("Comprar"),
+                      content: Text("Deseja ir para compras?"),
+                      actions: [
+                        OutlinedButton(
+                          child: Text('Comprar'),
+                          onPressed: (){
+                            Navigator.pushNamed(context, 'compras');
+                          },
+                        ),
+                        OutlinedButton(
+                          child: Text('Cancelar'),
+                          onPressed: (){
+                            Navigator.pushNamed(context, 'principal');
+                          },
 
-                  },
+                        )
+                      ],
+                    );
+                      }
+                    );
+                    
+
+                  }
                 ),
                 
               ),

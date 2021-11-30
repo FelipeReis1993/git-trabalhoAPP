@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "968318670702",
+    "project_id": "concursandoeletrica-aaca0",
+    "storage_bucket": "concursandoeletrica-aaca0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968318670702:android:ceda2eb672abaf550b537f",
+        "android_client_info": {
+          "package_name": "com.example.trabalho_dm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968318670702-a6c6o7uga6e856sprlr3516cekp84a67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrLw6__yC9--Xqo31_tmX6rKt-Q1R-CNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968318670702-a6c6o7uga6e856sprlr3516cekp84a67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

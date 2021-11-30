@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trabalho_dm/tela_concurso.dart';
 import 'package:trabalho_dm/tela_home.dart';
 import 'package:trabalho_dm/tela_provas.dart';
 import 'package:trabalho_dm/tela_questao.dart';
+import 'package:trabalho_dm/usuarios.dart';
+
+
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({ Key? key }) : super(key: key);
@@ -29,6 +33,7 @@ var pageController = PageController();
           TelaProvas(),
           TelaQuestao(),
           TelaConcurso(),
+          TelaUsers(),
 
         ],
         onPageChanged: (index){
@@ -62,7 +67,7 @@ var pageController = PageController();
 
             BottomNavigationBarItem(
             icon:Icon(Icons. auto_awesome_motion_outlined),
-            label: 'Matérias',
+            label: 'Provas',
              ),
 
             BottomNavigationBarItem(
@@ -73,6 +78,11 @@ var pageController = PageController();
              BottomNavigationBarItem(
             icon:Icon(Icons.calendar_today_sharp ),
             label: 'Concursos ',
+             ),
+
+            BottomNavigationBarItem(
+            icon:Icon(Icons.confirmation_num ),
+            label: 'Usuários ',
              ),
         ],
 
